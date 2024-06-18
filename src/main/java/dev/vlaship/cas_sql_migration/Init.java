@@ -20,11 +20,11 @@ public class Init {
     //language=SQL
     private static final String AZURE_BATCH_INSERT = "INSERT INTO tbl_migration (migration_id, request_id) VALUES (?,?)";
 
-    @Value("${chuncks}")
-    private int chuncks;
-
     private final CassandraTemplate cassandraTemplate;
     private final JdbcTemplate jdbcTemplate;
+
+    @Value("${chuncks}")
+    private int chuncks;
 
     public void init() {
         log.info("init");

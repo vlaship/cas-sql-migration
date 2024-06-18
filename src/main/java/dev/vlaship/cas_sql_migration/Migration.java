@@ -7,6 +7,7 @@ import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class Migration {
     private final CassandraTemplate cassandraTemplate;
     private final JdbcTemplate jdbcTemplate;
 
+    @Transactional
     public void migrate() {
         log.info("migration started");
 

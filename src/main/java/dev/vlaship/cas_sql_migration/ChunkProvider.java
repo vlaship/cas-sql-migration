@@ -16,7 +16,6 @@ public class ChunkProvider {
     @Nullable
     public synchronized String getMigrationId() {
         log.info("provideChunk");
-
         try {
             var migration_id = jdbcTemplate.queryForObject("SELECT migration_id FROM tbl_migration WHERE status = 'NEW' LIMIT 1", String.class);
 
