@@ -40,9 +40,8 @@ public class Init {
                 )
                 """);
 
-        // divide ids into chunks
         if (!CollectionUtils.isEmpty(ids)) {
-            log.info("insert requestId to postgres");
+            log.info("insert requestId to azure in chunks");
             for (var i = 0; i < ids.size(); i += chuncks) {
                 var toIndex = Math.min(i + chuncks, ids.size());
                 var chunk = ids.subList(i, toIndex);
