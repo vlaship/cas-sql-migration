@@ -1,0 +1,15 @@
+spring:
+  application.name: cas-sql-migration
+
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: ${AZURE_URL:jdbc:sqlserver://localhost:1433;}databaseName=${AZURE_DB:db}
+    username: ${AZURE_USER:user}
+    password: ${AZURE_PASS:pass}
+
+  cassandra:
+    contact-points: ${CAS_URL:localhost}
+    port: ${CAS_PORT:9042}
+    username: ${CAS_USER:user}
+    password: ${CAS_PASS:pass}
+    keyspace-name: ${CAS_KEYSPACE:cas}

@@ -1,0 +1,31 @@
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    environment:
+      CASSANDRA_CLUSTER_NAME: mycluster
+      CASSANDRA_USER: ${CAS_USER}
+      CASSANDRA_PASSWORD: ${CAS_PASS}
+    volumes:
+      - ./cassandra-data:/var/lib/cassandra
+
+  #  $ docker exec -it cassandra /bin/bash
+  #  $ cqlsh
+  #  cqlsh> CREATE KEYSPACE migration
+  #  WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1}
+  #   durable_writes = true;
+
+  azure-sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: azure-sql
+    ports:
+      - "6434:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${AZURE_PASS}
+#      SA_PASSWORD: ${AZURE_PASS}
+      MSSQL_DATABASE: ${AZURE_DB}
+    volumes:
+      - ./mssql-data:/var/opt/mssql/data
